@@ -25,10 +25,16 @@ class MyGame < Gosu::Window
     @background = Gosu::Image.new(self, "images/black-background.png", true)
     @score = 0
     @highscore = 0
+    @level = 1
   end
   
   def update
     if @running
+      
+      if @score >= 100 
+        @level = @score/100
+      end
+      
       @score = @score + 1
             
       if button_down? Gosu::Button::KbLeft
@@ -99,6 +105,7 @@ class MyGame < Gosu::Window
     @bonusminus50.draw
     @bonus50.draw
     @background.draw(0,0,1)
+    @message_font.draw("Your level is: #{@level}",25,450,5)
     @message_font.draw("The high score is: #{@highscore}",25,50,5)
     @message_font.draw("You have #{@lives - @counter + 1} lives remaining",25,475,5)
     @message_font.draw("Your score is: #{@score}",25,25,5)
