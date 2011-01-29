@@ -4,10 +4,12 @@ require 'player'
 require 'round_ball'
 require 'spike_ball'
 require 'bonus_50'
+require 'bonus_minus_50'
 
 class MyGame < Gosu::Window
   def initialize
     super(500, 500, false)
+    @bonusminus50 = Bonusminus50.new(self)
     @player1 = Player.new(self)
     @bonus50 = Bonus50.new(self)
     # @balls = 3.times.map {Ball.new(self)}
@@ -22,6 +24,7 @@ class MyGame < Gosu::Window
     @message_font = Gosu::Font.new(self, Gosu::default_font_name, 20)
     @background = Gosu::Image.new(self, "images/black-background.png", true)
     @score = 0
+    @highscore = 0
   end
   
   def update
@@ -43,6 +46,8 @@ class MyGame < Gosu::Window
       if button_down? Gosu::Button::KbDown
         @player1.move_down
       end
+    
+      @bonusminus50.update
     
       @bonus50.update
     
@@ -68,6 +73,9 @@ class MyGame < Gosu::Window
       
     else
       if button_down? Gosu::Button::KbEscape
+        if @highscore <= @score
+          @highscore = @score
+        end
         @score = 0
         @counter = 0
         restart_game
@@ -79,12 +87,19 @@ class MyGame < Gosu::Window
       restart_game
     end
       
+    if @player1.hit_by_Bonusminus50?(@bonus50)
+      @score = @score - 50
+      restart_game
+    end
+      
   end
   
   
   def draw
+    @bonusminus50.draw
     @bonus50.draw
     @background.draw(0,0,1)
+    @message_font.draw("The high score is: #{@highscore}",25,50,5)
     @message_font.draw("You have #{@lives - @counter + 1} lives remaining",25,475,5)
     @message_font.draw("Your score is: #{@score}",25,25,5)
     @player1.draw

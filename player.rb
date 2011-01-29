@@ -67,4 +67,8 @@ class Player
     Gosu::distance(@x,@y, bonus.x, bonus.y) < 50
   end
   
+  def hit_by_Bonusminus50?(bonus)
+    Gosu::distance(@x,@y, bonus.x, bonus.y) < 50
+  end
+  
 end
