@@ -1,7 +1,7 @@
 class Bonus50
   def initialize(game_window)
     @game_window = game_window
-    @icon = Gosu::Image.new(@game_window, "images/50_point_bonus.png", true)
+    @icon = Gosu::Image.new(@game_window, "images/Level1bonus50.png", true)
     reset!
   end
   

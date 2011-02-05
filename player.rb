@@ -2,7 +2,7 @@ class Player
   
   def initialize(game_window)
     @game_window = game_window
-    @icon = Gosu::Image.new(@game_window, "images/player1.png", true)
+    @icon = Gosu::Image.new(@game_window, "images/Level1player.png", true)
     @x = 50
     @y = 50
   end
@@ -67,8 +67,8 @@ class Player
     Gosu::distance(@x,@y, bonus.x, bonus.y) < 50
   end
   
-  def hit_by_Bonusminus50?(bonus)
-    Gosu::distance(@x,@y, bonus.x, bonus.y) < 50
+  def hit_by_Bonusminus50?(bonusminus50)
+    Gosu::distance(@x,@y, bonusminus50.x, bonusminus50.y) < 50
   end
   
 end

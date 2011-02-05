@@ -22,7 +22,7 @@ class MyGame < Gosu::Window
     @counter = 0
     @lives = 2
     @message_font = Gosu::Font.new(self, Gosu::default_font_name, 20)
-    @background = Gosu::Image.new(self, "images/black-background.png", true)
+    @background = Gosu::Image.new(self, "images/Level1background.png", true)
     @score = 0
     @highscore = 0
     @level = 1
@@ -31,8 +31,8 @@ class MyGame < Gosu::Window
   def update
     if @running
       
-      if @score >= 100 
-        @level = @score/100
+      if @score >= 1000 
+        @level = @score/1000 + 1
       end
       
       @score = @score + 1
@@ -93,7 +93,7 @@ class MyGame < Gosu::Window
       restart_game
     end
       
-    if @player1.hit_by_Bonusminus50?(@bonus50)
+    if @player1.hit_by_Bonusminus50?(@bonusminus50)
       @score = @score - 50
       restart_game
     end
