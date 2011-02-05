@@ -1,4 +1,7 @@
+require 'level'
+
 class Player
+  include Level
   
   def initialize(game_window)
     @game_window = game_window
@@ -8,9 +11,17 @@ class Player
   end
   
   def draw
+    if level_changed? && get_level == 2
+      @icon = Gosu::Image.new(self, "images/Leve2player.png", true)
+    end
+
+    if level_changed? && get_level == 3
+      @icon = Gosu::Image.new(self, "images/Level3player.png", true)
+    end
+    
     @icon.draw(@x,@y,1)
   end
-  
+    
   def move_left
     if @x < 0
       @x = 0
@@ -18,7 +29,7 @@ class Player
       @x = @x - 10
     end
   end
-  
+
   def move_right
     if @x > (@game_window.width - 75)
       @x = @game_window.width - 75
@@ -26,7 +37,7 @@ class Player
       @x = @x + 10
     end
   end
-  
+
   def move_up
     if @y < 0
       @y = 0
@@ -34,7 +45,7 @@ class Player
       @y = @y - 10
     end
   end
-  
+
   def move_down
     if @y > (@game_window.height-75)
       @y = @game_window.height - 75
@@ -42,7 +53,7 @@ class Player
       @y = @y + 10
     end
   end
-  
+    
   def hit_by?(balls)
     balls.any? {|ball| Gosu::distance(@x,@y, ball.x, ball.y) < 50} 
   end
