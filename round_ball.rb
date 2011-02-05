@@ -23,11 +23,11 @@ class RoundBall
   
   def draw
     if level_changed? && get_level == 2
-      @icon = Gosu::Image.new(self, "images/Level2troop.png", true)
+      @icon = Gosu::Image.new(@game_window, "images/Level2troop.png", true)
     end
 
     if level_changed? && get_level == 3
-      @icon = Gosu::Image.new(self, "images/Level3troop.png", true)
+      @icon = Gosu::Image.new(@game_window, "images/Level3troop.png", true)
     end
     @icon.draw(@x,@y,2)
   end

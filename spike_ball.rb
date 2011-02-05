@@ -25,11 +25,11 @@ class SpikeBall
   
   def draw
     if level_changed? && get_level == 2
-      @icon = Gosu::Image.new(self, "images/Level2boss.png", true)
+      @icon = Gosu::Image.new(@game_window, "images/Level2boss.png", true)
     end
 
     if level_changed? && get_level == 3
-      @icon = Gosu::Image.new(self, "images/Level3boss.png", true)
+      @icon = Gosu::Image.new(@game_window, "images/Level3boss.png", true)
     end
     @icon.draw(@x,@y,2)
   end

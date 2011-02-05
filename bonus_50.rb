@@ -21,11 +21,11 @@ class Bonus50
   
   def draw
     if level_changed? && get_level == 2
-      @icon = Gosu::Image.new(self, "images/Level2bonus50.png", true)
+      @icon = Gosu::Image.new(@game_window, "images/Level2bonus50.png", true)
     end
 
     if level_changed? && get_level == 3
-      @icon = Gosu::Image.new(self, "images/Level3bonus50.png", true)
+      @icon = Gosu::Image.new(@game_window, "images/Level3bonus50.png", true)
     end
     @icon.draw(@x,@y,2)
   end

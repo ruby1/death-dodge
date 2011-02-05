@@ -12,11 +12,11 @@ class Player
   
   def draw
     if level_changed? && get_level == 2
-      @icon = Gosu::Image.new(self, "images/Leve2player.png", true)
+      @icon = Gosu::Image.new(@game_window, "images/Leve2player.png", true)
     end
-
+    
     if level_changed? && get_level == 3
-      @icon = Gosu::Image.new(self, "images/Level3player.png", true)
+      @icon = Gosu::Image.new(@game_window, "images/Level3player.png", true)
     end
     
     @icon.draw(@x,@y,1)
