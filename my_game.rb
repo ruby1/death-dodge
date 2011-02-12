@@ -60,7 +60,7 @@ class MyGame < Gosu::Window
         @player1.move_up
       end
     
-      if button_down? Gosu::Button::KbDown
+      if button_down? Gosu::Button::KbDown  
         @player1.move_down
       end
     
@@ -69,6 +69,8 @@ class MyGame < Gosu::Window
       @bonus50.update
     
       @balls.each {|ball| ball.update}
+    
+      @player1.update
     
     if @player1.hit_by_round_ball? @balls
         if @counter >= @lives
@@ -97,6 +99,7 @@ class MyGame < Gosu::Window
         reset_level
         @counter = 0
         restart_game
+        @player1.reset
       end
     end
     

@@ -5,7 +5,10 @@ class Bonus50
   
   def initialize(game_window)
     @game_window = game_window
-    @icon = Gosu::Image.new(@game_window, "images/Level1bonus50.png", true)
+    @icon = @icon1
+    @icon1 = Gosu::Image.new(@game_window, "images/Level1bonus50.png", true)
+    @icon2 = Gosu::Image.new(@game_window, "images/Level2bonus50.png", true)
+    @icon3 = Gosu::Image.new(@game_window, "images/Level3bonus50.png", true)
     reset!
   end
   
@@ -17,16 +20,16 @@ class Bonus50
     else
       @y = @y + 15
     end
+     if @game_window.get_level == 2
+        @icon = @icon2
+      end
+
+      if @game_window.get_level == 3
+        @icon = @icon3
+      end
   end
   
   def draw
-    if level_changed? && get_level == 2
-      @icon = Gosu::Image.new(@game_window, "images/Level2bonus50.png", true)
-    end
-
-    if level_changed? && get_level == 3
-      @icon = Gosu::Image.new(@game_window, "images/Level3bonus50.png", true)
-    end
     @icon.draw(@x,@y,2)
   end
   
@@ -41,5 +44,6 @@ class Bonus50
   def reset!
     @y = 0
     @x = rand(@game_window.width)
+    @icon = @icon1
   end
 end

@@ -1,24 +1,28 @@
 require 'level'
 
 class Player
-  include Level
   
   def initialize(game_window)
     @game_window = game_window
-    @icon = Gosu::Image.new(@game_window, "images/Level1player.png", true)
+    @icon1 = Gosu::Image.new(@game_window, "images/Level1player.png", true)
+    @icon2 = Gosu::Image.new(@game_window, "images/Level2player.png", true)
+    @icon3 = Gosu::Image.new(@game_window, "images/Level3player.png", true)
     @x = 50
     @y = 50
+    @icon = @icon1
+  end
+  
+  def update
+    if @game_window.get_level == 2
+      @icon = @icon2
+    end
+    
+    if @game_window.get_level == 3
+      @icon = @icon3
+    end
   end
   
   def draw
-    if level_changed? && get_level == 2
-      @icon = Gosu::Image.new(@game_window, "images/Leve2player.png", true)
-    end
-    
-    if level_changed? && get_level == 3
-      @icon = Gosu::Image.new(@game_window, "images/Level3player.png", true)
-    end
-    
     @icon.draw(@x,@y,1)
   end
     
@@ -80,6 +84,10 @@ class Player
   
   def hit_by_Bonusminus50?(bonusminus50)
     Gosu::distance(@x,@y, bonusminus50.x, bonusminus50.y) < 50
+  end
+
+  def reset
+    @icon = @icon1
   end
   
 end
